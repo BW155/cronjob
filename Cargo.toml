@@ -1,0 +1,8 @@
+[package]
+name = "cronjob"
+version = "0.1.0"
+authors = ["b.wisman155 <b.wisman155@gmail.com>"]
+
+[dependencies]
+cron = {git = "https://github.com/zslayton/cron.git"}
+chrono = "0.4.0"
