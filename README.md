@@ -1,17 +1,14 @@
 # cronjob
 A libary for creating cronjobs for your application methods.
 
+It's on crates.io now, check it out https://crates.io/crates/cronjob.
+
 How to use the project
 ======================
-<!--Add this to your `Cargo.toml` under `[dependencies]`
+
+Add this to your `Cargo.toml` under `[dependencies]`
 ``` toml
 cronjob = "0.1.0"
-```
-It's on crates.io now, check it out https://crates.io/crates/cronjob.-->
-
-Currently you have to add this in your `Cargo.toml` under `[dependencies]`
-``` toml
-cronjob = { git = "https://github.com/TheUberCatman/cronjob.git" }
 ```
 
 examples
