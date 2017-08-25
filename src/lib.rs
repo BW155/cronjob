@@ -22,6 +22,25 @@
 //!     println!("{}: It's time!", name);
 //! }
 //! ```
+//!
+//! ## Threaded
+//! ``` no_run
+//! extern crate cronjob;
+//! use cronjob::{CronJob, get_timezone_offset};
+//!
+//! fn main() {
+//!     // Create offset for your required timezone.
+//!     let offset = get_timezone_offset(2);
+//!     // Create the `CronJob` object
+//!     let mut cron = CronJob::new("Test Cron Threaded", "* * * * * * *", offset, on_cron);
+//!     // start the cronjob
+//!     CronJob::start_job_threaded(cron);
+//! }
+//!
+//! // Our cronjob handler
+//! fn on_cron(name: &str) {
+//!     println!("{}: It's time!", name);
+//! }
 
 
 
