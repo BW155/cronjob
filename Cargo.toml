@@ -2,6 +2,8 @@
 name = "cronjob"
 version = "0.1.0"
 authors = ["b.wisman155 <b.wisman155@gmail.com>"]
+description = "cronjob library for scheduling your methods"
+license = "Apache-2.0"
 
 [dependencies]
 cron = "0.4.0"
