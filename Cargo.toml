@@ -1,10 +1,11 @@
 [package]
 name = "cronjob"
-version = "0.1.11"
+version = "0.1.12"
 authors = ["b.wisman155 <b.wisman155@gmail.com>"]
 description = "cronjob library for scheduling your methods"
 license = "Apache-2.0"
 repository = "https://github.com/TheUberCatman/cronjob"
+keywords = ["cron", "schedule"]
 
 [dependencies]
 cron = "0.4.0"
