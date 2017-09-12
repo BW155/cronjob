@@ -11,11 +11,11 @@
 //! fn main() {
 //!     // Create the `CronJob` object.
 //!     let mut cron = CronJob::new("Test Cron", on_cron);
-//!     // Start the cronjob
+//!     // Start the cronjob.
 //!     cron.start_job();
 //! }
 //!
-//! // Our cronjob handler
+//! // Our cronjob handler.
 //! fn on_cron(name: &str) {
 //!     println!("{}: It's time!", name);
 //! }
@@ -24,22 +24,22 @@
 //! ## schedule
 //! The `cronjob` allows to optionally add schedule parameters.
 //!
-//! ``` no _run
+//! ``` no_run
 //! extern crate cronjob;
 //! use cronjob::CronJob;
 //!
 //! fn main() {
 //!     // Create the `CronJob` object.
 //!     let mut cron = CronJob::new("Test Cron", on_cron);
-//!     // Set seconds
+//!     // Set seconds.
 //!     cron.seconds("0");
-//!     // Set minutes
+//!     // Set minutes.
 //!     cron.minutes(0);
-//!     // Start the cronjob
+//!     // Start the cronjob.
 //!     cron.start_job();
 //! }
 //!
-//! // Our cronjob handler
+//! // Our cronjob handler.
 //! fn on_cron(name: &str) {
 //!     println!("{}: It's time!", name);
 //! }
@@ -51,13 +51,13 @@
 //! use cronjob::CronJob;
 //!
 //! fn main() {
-//!     // Create the `CronJob` object
+//!     // Create the `CronJob` object.
 //!     let mut cron = CronJob::new("Test Cron Threaded", on_cron);
-//!     // start the cronjob
+//!     // start the cronjob.
 //!     CronJob::start_job_threaded(cron);
 //! }
 //!
-//! // Our cronjob handler
+//! // Our cronjob handler.
 //! fn on_cron(name: &str) {
 //!     println!("{}: It's time!", name);
 //! }
