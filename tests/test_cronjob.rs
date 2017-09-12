@@ -3,12 +3,12 @@ extern crate cronjob;
 #[cfg(test)]
 mod tests {
 
-    use cronjob::{CronJob, get_timezone_offset};
+    use cronjob::CronJob;
 
     #[test]
-    fn it_works() {
-        let offset = get_timezone_offset(2);
-        let mut cron = CronJob::new("Test Cron", "* * * * * * *", offset, on_cron);
+    fn test_cronjob() {
+        let mut cron = CronJob::new("Test Cron", on_cron);
+        cron.offset(2);
         cron.start_job();
     }
 

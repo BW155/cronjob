@@ -17,17 +17,19 @@ This is an example for the unthreaded version.
 
 ```Rust
 extern crate cronjob;
-use cronjob::{CronJob, get_timezone_offset};
+use cronjob::CronJob;
 
 fn main() {
-    // Create offset for your required timezone.
-    let offset = get_timezone_offset(2);
     // Create the `CronJob` object.
-    let mut cron = CronJob::new("Test Cron", "* * * * * * *", offset, on_cron);
+    let mut cron = CronJob::new("Test Cron", on_cron);
+    // Set to fire when seconds is 0
+    cron.seconds("0");
+    // Set offset for UTC
+    cron.offset(0);
     // Start the cronjob
     cron.start_job();
 }
-
+    
 // Our cronjob handler
 fn on_cron(name: &str) {
     println!("{}: It's time!", name);
@@ -38,17 +40,15 @@ This is an example for the threaded version.
 
 ```Rust
 extern crate cronjob;
-use cronjob::{CronJob, get_timezone_offset};
+use cronjob::CronJob;
 
 fn main() {
-    // Create offset for your required timezone.
-    let offset = get_timezone_offset(2);
     // Create the `CronJob` object.
-    let cron = CronJob::new("Test Cron", "* * * * * * *", offset, on_cron);
+    let cron = CronJob::new("Test Cron", on_cron);
     // Start the cronjob
     CronJob::start_job_threaded(cron)
 }
-
+    
 // Our cronjob handler
 fn on_cron(name: &str) {
     println!("{}: It's time!", name);

@@ -6,13 +6,11 @@
 //!
 //! ``` no_run
 //! extern crate cronjob;
-//! use cronjob::{CronJob, get_timezone_offset};
+//! use cronjob::CronJob;
 //!
 //! fn main() {
-//!     // Create offset for your required timezone.
-//!     let offset = get_timezone_offset(2);
 //!     // Create the `CronJob` object.
-//!     let mut cron = CronJob::new("Test Cron", "* * * * * * *", offset, on_cron);
+//!     let mut cron = CronJob::new("Test Cron", on_cron);
 //!     // Start the cronjob
 //!     cron.start_job();
 //! }
@@ -23,16 +21,37 @@
 //! }
 //! ```
 //!
+//! ## schedule
+//! The `cronjob` allows to optionally add schedule parameters.
+//!
+//! ``` no _run
+//! extern crate cronjob;
+//! use cronjob::CronJob;
+//!
+//! fn main() {
+//!     // Create the `CronJob` object.
+//!     let mut cron = CronJob::new("Test Cron", on_cron);
+//!     // Set seconds
+//!     cron.seconds("0");
+//!     // Set minutes
+//!     cron.minutes(0);
+//!     // Start the cronjob
+//!     cron.start_job();
+//! }
+//!
+//! // Our cronjob handler
+//! fn on_cron(name: &str) {
+//!     println!("{}: It's time!", name);
+//! }
+//!
 //! ## Threaded
 //! ``` no_run
 //! extern crate cronjob;
-//! use cronjob::{CronJob, get_timezone_offset};
+//! use cronjob::CronJob;
 //!
 //! fn main() {
-//!     // Create offset for your required timezone.
-//!     let offset = get_timezone_offset(2);
 //!     // Create the `CronJob` object
-//!     let mut cron = CronJob::new("Test Cron Threaded", "* * * * * * *", offset, on_cron);
+//!     let mut cron = CronJob::new("Test Cron Threaded", on_cron);
 //!     // start the cronjob
 //!     CronJob::start_job_threaded(cron);
 //! }
