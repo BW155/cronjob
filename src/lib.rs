@@ -71,21 +71,9 @@ extern crate chrono;
 pub use cronjob::CronJob;
 
 use command::Command;
-use chrono::FixedOffset;
 
 mod cronjob;
 mod command;
-
-const HOUR: i32 = 3600;
-
-/// Use this to automaticly get an `FixedOffset` for the `CronJob` object
-pub fn get_timezone_offset(hours: i32) -> FixedOffset {
-    if hours > 0 {
-        FixedOffset::east(HOUR * hours)
-    } else {
-        FixedOffset::west(HOUR * (hours * -1))
-    }
-}
 
 /// Implementation of `Command` for your methods to be used by the `CronJob` object
 impl<T: Sync + Send + 'static + FnMut(&str)> Command for T {
