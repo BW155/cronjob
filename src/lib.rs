@@ -43,6 +43,7 @@
 //! fn on_cron(name: &str) {
 //!     println!("{}: It's time!", name);
 //! }
+//! ```
 //!
 //! ## Threaded
 //! ``` no_run
@@ -60,6 +61,7 @@
 //! fn on_cron(name: &str) {
 //!     println!("{}: It's time!", name);
 //! }
+//! ```
 
 
 
