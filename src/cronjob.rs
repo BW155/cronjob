@@ -73,12 +73,12 @@ impl CronJob {
         self
     }
 
-    pub fn offset(&mut self, timezone_offset: i64) -> &mut Self {
-        self.offset = Some(FixedOffset::east(timezone_offset as i32));
+    pub fn offset(&mut self, timezone_offset: i32) -> &mut Self {
+        self.offset = Some(FixedOffset::east(timezone_offset));
         self
     }
 
-    fn get_schedule(&mut self) -> Schedule {
+    pub fn get_schedule(&mut self) -> Schedule {
         let cron = format!("{} {} {} {} {} {} {}",
                            self.seconds.clone().unwrap_or("*".to_string()),
                            self.minutes.clone().unwrap_or("*".to_string()),
@@ -94,11 +94,13 @@ impl CronJob {
     pub fn start_job(&mut self) {
         let schedule = self.get_schedule();
         let offset = self.offset.unwrap_or(FixedOffset::east(0));
+
         loop {
-            let upcoming = schedule.upcoming(offset).take(1);
-            thread::sleep(Duration::new(1, 0));
-            for datetime in upcoming {
-                let local = &Local::now();
+            let mut upcoming = schedule.upcoming(offset).take(1);
+            thread::sleep(Duration::from_millis(500));
+            let local = &Local::now();
+
+            if let Some(datetime) = upcoming.next() {
                 if datetime.timestamp() <= local.timestamp() {
                     self.command.execute(&self.name);
                 }
