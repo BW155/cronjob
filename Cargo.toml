@@ -1,6 +1,6 @@
 [package]
 name = "cronjob"
-version = "0.2.17"
+version = "0.3.17"
 authors = ["b.wisman155 <b.wisman155@gmail.com>"]
 description = "cronjob library for scheduling your methods"
 license = "Apache-2.0"
