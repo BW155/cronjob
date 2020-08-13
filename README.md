@@ -8,7 +8,7 @@ How to use the project
 
 Add this to your `Cargo.toml` under `[dependencies]`
 ``` toml
-cronjob = "0.1.1"
+cronjob = "0.2.16"
 ```
 
 examples
