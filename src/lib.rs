@@ -53,7 +53,11 @@
 //! fn main() {
 //!     // Create the `CronJob` object.
 //!     let mut cron = CronJob::new("Test Cron Threaded", on_cron);
-//!     // start the cronjob.
+//!     // Set seconds.
+//!     cron.seconds("0");
+//!     // Set minutes.
+//!     cron.minutes(0);
+//!     // Start the cronjob.
 //!     CronJob::start_job_threaded(cron);
 //! }
 //!

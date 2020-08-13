@@ -10,7 +10,7 @@ use command::Command;
 /// The object to create and execute cronjobs for yout application.
 pub struct CronJob {
     name: String,
-    command: Box<Command>,
+    command: Box<dyn Command>,
     seconds: Option<String>,
     minutes: Option<String>,
     hours: Option<String>,

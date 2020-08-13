@@ -45,6 +45,10 @@ use cronjob::CronJob;
 fn main() {
     // Create the `CronJob` object.
     let cron = CronJob::new("Test Cron", on_cron);
+    // Set to fire when seconds is 0
+    cron.seconds("0");
+    // Set offset for UTC
+    cron.offset(0);
     // Start the cronjob
     CronJob::start_job_threaded(cron)
 }

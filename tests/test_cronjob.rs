@@ -9,6 +9,7 @@ mod tests {
     fn test_cronjob() {
         let mut cron = CronJob::new("Test Cron", on_cron);
         cron.offset(2);
+        cron.seconds("2");
         cron.start_job();
     }
 
