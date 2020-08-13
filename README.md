@@ -22,8 +22,10 @@ use cronjob::CronJob;
 fn main() {
     // Create the `CronJob` object.
     let mut cron = CronJob::new("Test Cron", on_cron);
-    // Set to fire when seconds is 0
-    cron.seconds("0");
+    // Set to fire when seconds is 0, 2 or 4
+    cron.seconds("0,2,4");
+    // Set to fire when day of week is Monday or Friday
+    cron.day_of_week("Mon,Fri");
     // Set offset for UTC
     cron.offset(0);
     // Start the cronjob
