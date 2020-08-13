@@ -78,15 +78,17 @@ impl CronJob {
         self
     }
 
+    /// Returns the schedule for the cronjob, with this you are able to get the next occurences.
     pub fn get_schedule(&mut self) -> Schedule {
+        let asterix = String::from("*");
         let cron = format!("{} {} {} {} {} {} {}",
-                           self.seconds.clone().unwrap_or("*".to_string()),
-                           self.minutes.clone().unwrap_or("*".to_string()),
-                           self.hours.clone().unwrap_or("*".to_string()),
-                           self.day_of_month.clone().unwrap_or("*".to_string()),
-                           self.month.clone().unwrap_or("*".to_string()),
-                           self.day_of_week.clone().unwrap_or("*".to_string()),
-                           self.year.clone().unwrap_or("*".to_string()));
+                           self.seconds.as_ref().unwrap_or(&asterix),
+                           self.minutes.as_ref().unwrap_or(&asterix),
+                           self.hours.as_ref().unwrap_or(&asterix),
+                           self.day_of_month.as_ref().unwrap_or(&asterix),
+                           self.month.as_ref().unwrap_or(&asterix),
+                           self.day_of_week.as_ref().unwrap_or(&asterix),
+                           self.year.as_ref().unwrap_or(&asterix));
         Schedule::from_str(&cron).unwrap()
     }
 
@@ -111,7 +113,7 @@ impl CronJob {
     /// Starts the cronjob with threading. Stops when application quits.
     pub fn start_job_threaded(mut cronjob: CronJob) {
         thread::Builder::new()
-            .name(cronjob.name.to_string())
+            .name(cronjob.name.clone())
             .spawn(move || { cronjob.start_job(); })
             .expect("There was an error in an cronjob");
     }
