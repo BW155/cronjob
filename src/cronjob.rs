@@ -1,5 +1,5 @@
-use cron::Schedule;
 use chrono::{FixedOffset, Local};
+use cron::Schedule;
 
 use std::str::FromStr;
 use std::thread;
@@ -81,21 +81,23 @@ impl CronJob {
     /// Returns the schedule for the cronjob, with this you are able to get the next occurences.
     pub fn get_schedule(&mut self) -> Schedule {
         let asterix = String::from("*");
-        let cron = format!("{} {} {} {} {} {} {}",
-                           self.seconds.as_ref().unwrap_or(&asterix),
-                           self.minutes.as_ref().unwrap_or(&asterix),
-                           self.hours.as_ref().unwrap_or(&asterix),
-                           self.day_of_month.as_ref().unwrap_or(&asterix),
-                           self.month.as_ref().unwrap_or(&asterix),
-                           self.day_of_week.as_ref().unwrap_or(&asterix),
-                           self.year.as_ref().unwrap_or(&asterix));
+        let cron = format!(
+            "{} {} {} {} {} {} {}",
+            self.seconds.as_ref().unwrap_or(&asterix),
+            self.minutes.as_ref().unwrap_or(&asterix),
+            self.hours.as_ref().unwrap_or(&asterix),
+            self.day_of_month.as_ref().unwrap_or(&asterix),
+            self.month.as_ref().unwrap_or(&asterix),
+            self.day_of_week.as_ref().unwrap_or(&asterix),
+            self.year.as_ref().unwrap_or(&asterix)
+        );
         Schedule::from_str(&cron).unwrap()
     }
 
     /// Starts the cronjob without threading.
     pub fn start_job(&mut self) {
         let schedule = self.get_schedule();
-        let offset = self.offset.unwrap_or(FixedOffset::east(0));
+        let offset = self.offset.unwrap_or_else(|| FixedOffset::east(0));
 
         loop {
             let mut upcoming = schedule.upcoming(offset).take(1);
@@ -114,7 +116,9 @@ impl CronJob {
     pub fn start_job_threaded(mut cronjob: CronJob) {
         thread::Builder::new()
             .name(cronjob.name.clone())
-            .spawn(move || { cronjob.start_job(); })
+            .spawn(move || {
+                cronjob.start_job();
+            })
             .expect("There was an error in an cronjob");
     }
 }
