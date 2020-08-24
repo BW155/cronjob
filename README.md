@@ -15,7 +15,7 @@ examples
 ==========
 This is an example for the unthreaded version.
 
-```Rust
+```rust
 extern crate cronjob;
 use cronjob::CronJob;
 
