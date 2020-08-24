@@ -40,7 +40,7 @@ fn on_cron(name: &str) {
 
 This is an example for the threaded version.
 
-```Rust
+```rust
 extern crate cronjob;
 use cronjob::CronJob;
 
