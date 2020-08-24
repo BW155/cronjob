@@ -116,9 +116,7 @@ impl CronJob {
     pub fn start_job_threaded(mut cronjob: CronJob) {
         thread::Builder::new()
             .name(cronjob.name.clone())
-            .spawn(move || {
-                cronjob.start_job();
-            })
+            .spawn(move || cronjob.start_job())
             .expect("There was an error in an cronjob");
     }
 }
