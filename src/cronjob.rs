@@ -19,6 +19,7 @@ pub struct CronJob {
     day_of_week: Option<String>,
     year: Option<String>,
     offset: Option<FixedOffset>,
+    delay: u64,
 }
 
 impl CronJob {
@@ -35,6 +36,7 @@ impl CronJob {
             day_of_week: None,
             year: None,
             offset: None,
+            delay: 500,
         }
     }
 
@@ -78,6 +80,11 @@ impl CronJob {
         self
     }
 
+    pub fn set_delay(&mut self, delay: u64) -> &mut Self {
+        self.delay = delay;
+        self
+    }
+
     /// Returns the schedule for the cronjob, with this you are able to get the next occurences.
     pub fn get_schedule(&mut self) -> Schedule {
         let asterix = String::from("*");
@@ -101,7 +108,7 @@ impl CronJob {
 
         loop {
             let mut upcoming = schedule.upcoming(offset).take(1);
-            thread::sleep(Duration::from_millis(500));
+            thread::sleep(Duration::from_millis(self.delay));
             let local = &Local::now();
 
             if let Some(datetime) = upcoming.next() {
