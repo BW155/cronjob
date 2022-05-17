@@ -8,6 +8,7 @@ mod tests {
     #[test]
     fn test_cronjob() {
         let mut cron = CronJob::new("Test Cron", on_cron);
+        cron.set_checking_interval(1000);
         cron.offset(2);
         cron.seconds("0-10");
         cron.start_job();

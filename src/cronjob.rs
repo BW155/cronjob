@@ -19,7 +19,7 @@ pub struct CronJob {
     day_of_week: Option<String>,
     year: Option<String>,
     offset: Option<FixedOffset>,
-    delay: u64,
+    interval: u64,
 }
 
 impl CronJob {
@@ -36,7 +36,7 @@ impl CronJob {
             day_of_week: None,
             year: None,
             offset: None,
-            delay: 500,
+            interval: 500,
         }
     }
 
@@ -80,8 +80,9 @@ impl CronJob {
         self
     }
 
-    pub fn set_delay(&mut self, delay: u64) -> &mut Self {
-        self.delay = delay;
+    /// Set checking interval in millis
+    pub fn set_checking_interval(&mut self, interval: u64) -> &mut Self {
+        self.interval = interval;
         self
     }
 
@@ -108,7 +109,7 @@ impl CronJob {
 
         loop {
             let mut upcoming = schedule.upcoming(offset).take(1);
-            thread::sleep(Duration::from_millis(self.delay));
+            thread::sleep(Duration::from_millis(self.interval));
             let local = &Local::now();
 
             if let Some(datetime) = upcoming.next() {
