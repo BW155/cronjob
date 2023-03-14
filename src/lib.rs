@@ -34,7 +34,7 @@
 //!     // Set seconds.
 //!     cron.seconds("0");
 //!     // Set minutes.
-//!     cron.minutes(0);
+//!     cron.minutes("0");
 //!     // Start the cronjob.
 //!     cron.start_job();
 //! }
@@ -56,7 +56,7 @@
 //!     // Set seconds.
 //!     cron.seconds("0");
 //!     // Set minutes.
-//!     cron.minutes(0);
+//!     cron.minutes("0");
 //!     // Start the cronjob.
 //!     CronJob::start_job_threaded(cron);
 //! }
